@@ -1,3 +1,5 @@
+"use strict";
+
 // Primitive Types Exercises
 console.log(typeof 99.9);
 console.log(typeof "false");
