@@ -81,12 +81,12 @@ function isTwo(num){
  */
 
     function calculateTip(tipPercentage, billTotal){
-        return tipPercentage * billTotal
+        return alert("This is how much you should tip: $" + (tipPercentage * billTotal));
     }
 
-    console.log(calculateTip(0.20, 20));
-    console.log(calculateTip(0.25, 25.50));
-    console.log(calculateTip(0.15, 33.42));
+    // console.log(calculateTip(0.20, 20));
+    // console.log(calculateTip(0.25, 25.50));
+    // console.log(calculateTip(0.15, 33.42));
 
 /**
  * TODO:
@@ -94,6 +94,13 @@ function isTwo(num){
  * prompt the user for the bill total and a percentage they would like to tip,
  * then display the dollar amount they should tip
  */
+
+    var userTipPercentage = prompt("How much would you like to tip?");
+    var convertedTipPercentage = userTipPercentage/100;
+    var userBillTotal = prompt("What is your bill total?");
+    console.log()
+
+    calculateTip(convertedTipPercentage, userBillTotal);
 
 /**
  * TODO:
