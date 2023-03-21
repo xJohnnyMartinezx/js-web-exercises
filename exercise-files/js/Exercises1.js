@@ -90,36 +90,36 @@ console.log(newSample.substring(6,11+1));
 
 console.log(newSample.substring(6,12));
 
-// 3.
-// Movie Rental
-var theLittleMermaid = 3;
-var brotherBear = 5;
-var hercules = 1;
-
-function totalRentalPrice(){
-    // return (theLittleMermaid * 3) + (brotherBear * 3) + (hercules * 3);
-    return "Total rental price is " + "$" + (theLittleMermaid + brotherBear + hercules) * 3;
-}
-console.log(totalRentalPrice());
-
-// Contractor Work
-var googleMoney = 400;
-var amazonMoney = 380;
-var facebookMoney = 350;
-
-var googleHours = 6;
-var amazonHours = 4;
-var facebookHours = 10;
-
-function totalPaid(){
-    var totalGSalary = googleMoney * googleHours;
-    var totalASalary = amazonMoney * amazonHours;
-    var totalFSalary = facebookMoney * facebookHours;
-
-    return "Total payment is " + "$" + (totalGSalary + totalASalary + totalFSalary);
-}
-
-console.log(totalPaid());
+// // 3.
+// // Movie Rental
+// var theLittleMermaid = 3;
+// var brotherBear = 5;
+// var hercules = 1;
+//
+// function totalRentalPrice(){
+//     // return (theLittleMermaid * 3) + (brotherBear * 3) + (hercules * 3);
+//     return "Total rental price is " + "$" + (theLittleMermaid + brotherBear + hercules) * 3;
+// }
+// console.log(totalRentalPrice());
+//
+// // Contractor Work
+// var googleMoney = 400;
+// var amazonMoney = 380;
+// var facebookMoney = 350;
+//
+// var googleHours = 6;
+// var amazonHours = 4;
+// var facebookHours = 10;
+//
+// function totalPaid(){
+//     var totalGSalary = googleMoney * googleHours;
+//     var totalASalary = amazonMoney * amazonHours;
+//     var totalFSalary = facebookMoney * facebookHours;
+//
+//     return "Total payment is " + "$" + (totalGSalary + totalASalary + totalFSalary);
+// }
+//
+// console.log(totalPaid());
 
 // Student Enrollment
 var fullClass = 50;
