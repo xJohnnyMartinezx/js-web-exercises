@@ -49,6 +49,7 @@ var random = Math.floor((Math.random() * 3) + 1);
  * The function should return a boolean value based on whether or not the passed
  * number is the number 2.
  *
+ *
  * Example
  * > isTwo(1) // returns false
  * > isTwo(2) // returns true
@@ -61,7 +62,13 @@ var random = Math.floor((Math.random() * 3) + 1);
  * number)
  */
 
-/**
+function isTwo(num){
+    return num === 2;
+}
+
+    console.log(isTwo(random));
+    console.log("Random generated number is: " + random)
+    /**
  * TODO:
  * Create a function named 'calculateTip' to calculate a tip on a bill at a
  * restaurant. The function should accept a tip percentage and the total of the
