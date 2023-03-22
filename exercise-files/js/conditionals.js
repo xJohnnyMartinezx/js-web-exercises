@@ -38,9 +38,9 @@
                 alert("Nice pick.");
             }
     }
-   //
-   // analyzeColor(userColor);
-   //  console.log("The user entered: " + userColor);
+
+   analyzeColor(userColor);
+    console.log("The user entered: " + userColor);
 
 // Don't change the next two lines!
 // These lines create two variables for you:
@@ -65,19 +65,19 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  */
 
 // *******EXERCISE 3*******
-    var userColor = prompt("What's your favorite color")
-
-    switch (userColor.toLowerCase()) {
-        case "green":
-            alert("Cool!, that's my favorite color too");
-            break;
-        case "yellow":
-            alert("Yellow is the color of the Sun.");
-            break;
-        default:
-            alert("Nice pick!");
-            break;
-    }
+//     var userColor = prompt("What's your favorite color")
+//
+//     switch (userColor.toLowerCase()) {
+//         case "green":
+//             alert("Cool!, that's my favorite color too");
+//             break;
+//         case "yellow":
+//             alert("Yellow is the color of the Sun.");
+//             break;
+//         default:
+//             alert("Nice pick!");
+//             break;
+//     }
 
 /**
  * TODO:
@@ -86,7 +86,7 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * function to show it to the user.
  */
 
-prompt("Please enter a color");
+// ****** ALREADY DONE IN EXERCISE 1 ***********
 
 
 /* ########################################################################## */
