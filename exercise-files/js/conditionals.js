@@ -113,42 +113,42 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
 
         // Exercise 5
 
-        var min = Math.ceil(0);
-        var max = Math.floor(5);
-        var randomLuckyNum = Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
-    console.log(randomLuckyNum);
+    //     var min = Math.ceil(0);
+    //     var max = Math.floor(5);
+    //     var randomLuckyNum = Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+    // console.log(randomLuckyNum);
 
     // var total = 20;
     // var twoPer = total * 0.25;
     //
     // console.log(twoPer);
 
-function calculateTotal(luckyNum, totalAmnt){
-
-    // Discounts:
-    var tenPer = totalAmnt * 0.10;
-    var twentyFivePer = totalAmnt * 0.25;
-    var thirtyFivePer = totalAmnt * 0.35
-    var fiftyPer = totalAmnt * 0.50;
-    var freePer = totalAmnt * 1;
-
-    if (luckyNum === 0){
-        alert("Sorry you do not get a discount. Your total is: $" + totalAmnt);
-    } else if (luckyNum === 1){
-        alert("Congrats, you won a 10% discount which is: $" + tenPer + " and your total is: $" + (totalAmnt - tenPer));
-    } else if (luckyNum === 2){
-        alert("Congrats, you won a 25% discount which is: $" + twentyFivePer + " and your total is: $" + (totalAmnt - twentyFivePer));
-    } else if (luckyNum === 3){
-        alert("Congrats, you won a 35% discount which is: $" + thirtyFivePer + " and your total is: $" + (totalAmnt - thirtyFivePer));
-    } else if (luckyNum === 4){
-        alert("Congrats, you won a 50% discount which is: $" + fiftyPer + " and your total is: $" + (totalAmnt - fiftyPer));
-    } else if (luckyNum === 5){
-        alert("Congrats, you won a 100% discount which is: $" + freePer + " and your total is: $" + (totalAmnt - freePer));
-    }
-
-}
-
-    calculateTotal(randomLuckyNum, 100);
+// function calculateTotal(luckyNum, totalAmnt){
+//
+//     // Discounts:
+//     var tenPer = totalAmnt * 0.10;
+//     var twentyFivePer = totalAmnt * 0.25;
+//     var thirtyFivePer = totalAmnt * 0.35
+//     var fiftyPer = totalAmnt * 0.50;
+//     var freePer = totalAmnt * 1;
+//
+//     if (luckyNum === 0){
+//         alert("Sorry you do not get a discount. Your total is: $" + totalAmnt);
+//     } else if (luckyNum === 1){
+//         alert("Congrats, you won a 10% discount which is: $" + tenPer + " and your total is: $" + (totalAmnt - tenPer));
+//     } else if (luckyNum === 2){
+//         alert("Congrats, you won a 25% discount which is: $" + twentyFivePer + " and your total is: $" + (totalAmnt - twentyFivePer));
+//     } else if (luckyNum === 3){
+//         alert("Congrats, you won a 35% discount which is: $" + thirtyFivePer + " and your total is: $" + (totalAmnt - thirtyFivePer));
+//     } else if (luckyNum === 4){
+//         alert("Congrats, you won a 50% discount which is: $" + fiftyPer + " and your total is: $" + (totalAmnt - fiftyPer));
+//     } else if (luckyNum === 5){
+//         alert("Congrats, you won a 100% discount which is: $" + freePer + " and your total is: $" + (totalAmnt - freePer));
+//     }
+//
+// }
+//
+//     calculateTotal(randomLuckyNum, 100);
 
 /**
  * TODO:
@@ -162,11 +162,11 @@ function calculateTotal(luckyNum, totalAmnt){
 // var luckyNumber = Math.floor(Math.random() * 6);
 
     //     EXERCISE 6
-
-    var userDefinedTotal = prompt("Please enter you total bill.");
-    console.log("Total entered by user: $" + userDefinedTotal);
-
-    calculateTotal(randomLuckyNum, userDefinedTotal);
+    //
+    // var userDefinedTotal = prompt("Please enter you total bill.");
+    // console.log("Total entered by user: $" + userDefinedTotal);
+    //
+    // calculateTotal(randomLuckyNum, userDefinedTotal);
 
 /**
  * TODO:
@@ -186,5 +186,21 @@ function calculateTotal(luckyNum, totalAmnt){
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+
+// EXERCISE 7
+
+    var userConfirm = confirm("Would you like to enter a number?");
+    console.log(userConfirm);
+    function enterANumber(){
+        if (userConfirm === true) {
+            prompt("Please enter a number?");
+        } else {
+            alert("OK, thanks for playing.")
+        }
+    }
+
+    function alerts(num){
+        return alert("")
+    }
 
 })();
