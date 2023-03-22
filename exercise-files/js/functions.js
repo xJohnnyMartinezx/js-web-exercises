@@ -95,12 +95,11 @@ function isTwo(num){
  * then display the dollar amount they should tip
  */
 
-    var userTipPercentage = prompt("How much would you like to tip?");
-    var convertedTipPercentage = userTipPercentage/100;
-    var userBillTotal = prompt("What is your bill total?");
-    console.log()
-
-    calculateTip(convertedTipPercentage, userBillTotal);
+    // var userTipPercentage = prompt("How much would you like to tip?");
+    // var convertedTipPercentage = userTipPercentage/100;
+    // var userBillTotal = prompt("What is your bill total?");
+    //
+    // calculateTip(convertedTipPercentage, userBillTotal);
 
 /**
  * TODO:
@@ -116,4 +115,21 @@ function isTwo(num){
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+
+// *****RANDOM DISCOUNT GENERATOR*******
+var randomDiscPercent = Math.random().toFixed(2);
+
+    console.log("RANDOM DISCOUNT IS: " + randomDiscPercent + "%");
+
+function applyDiscount(preDiscPrice, discPercent){
+    var discAmount = preDiscPrice * discPercent;
+     return "This is your total price with the discount: $" + (preDiscPrice - discAmount);
+}
+
+    // ****TEST WITH FIXED DISCOUNT*******
+    console.log("Fixed discount: " + applyDiscount(100, .20));
+    // ****TEST WITH RANDOM DISCOUNT BETWEEN 0 AND .99****
+    console.log("Random discount: " + applyDiscount(100, randomDiscPercent));
+
+
 })();
