@@ -25,6 +25,23 @@
  * console.logging the function's return value
  */
 
+// *****EXERCISE 1.*******
+
+    var userColor = prompt("What's you favorite color?")
+        function analyzeColor() {
+            // toLowerCase makes userColor case-insensitive (Converting the string/user input to all lower case.)
+            if (userColor.toLowerCase() === "green"){
+                alert("Wow! that's my favorite color too!");
+            } else if (userColor.toLowerCase() === "yellow"){
+                alert("Yellow is the color of the Sun.");
+            } else {
+                alert("Nice pick.");
+            }
+            console.log(userColor);
+    }
+
+    analyzeColor();
+
 // Don't change the next two lines!
 // These lines create two variables for you:
 // - `colors`: a list of the colors of the rainbow
