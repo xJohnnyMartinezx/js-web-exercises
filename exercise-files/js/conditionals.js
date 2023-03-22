@@ -27,20 +27,20 @@
 
 // *****EXERCISE 1.*******
 
-    var userColor = prompt("What's you favorite color?")
-        function analyzeColor(userInput) {
-            // toLowerCase makes userColor case-insensitive (Converting the string/user input to all lower case.)
-            if (userInput.toLowerCase() === "green"){
-                alert("Wow! that's my favorite color too!");
-            } else if (userInput.toLowerCase() === "yellow"){
-                alert("Yellow is the color of the Sun.");
-            } else{
-                alert("Nice pick.");
-            }
-    }
-
-   analyzeColor(userColor);
-    console.log("The user entered: " + userColor);
+   //  var userColor = prompt("What's you favorite color?")
+   //      function analyzeColor(userInput) {
+   //          // toLowerCase makes userColor case-insensitive (Converting the string/user input to all lower case.)
+   //          if (userInput.toLowerCase() === "green"){
+   //              alert("Wow! that's my favorite color too!");
+   //          } else if (userInput.toLowerCase() === "yellow"){
+   //              alert("Yellow is the color of the Sun.");
+   //          } else{
+   //              alert("Nice pick.");
+   //          }
+   //  }
+   //
+   // analyzeColor(userColor);
+   //  console.log("The user entered: " + userColor);
 
 // Don't change the next two lines!
 // These lines create two variables for you:
@@ -111,6 +111,45 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * return value.
  */
 
+        // Exercise 5
+
+        var min = Math.ceil(0);
+        var max = Math.floor(5);
+        var randomLuckyNum = Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+    console.log(randomLuckyNum);
+
+    // var total = 20;
+    // var twoPer = total * 0.25;
+    //
+    // console.log(twoPer);
+
+function calculateTotal(luckyNum, totalAmnt){
+
+    // Discounts:
+    var tenPer = totalAmnt * 0.10;
+    var twentyFivePer = totalAmnt * 0.25;
+    var thirtyFivePer = totalAmnt * 0.35
+    var fiftyPer = totalAmnt * 0.50;
+    var freePer = totalAmnt * 1;
+
+    if (luckyNum === 0){
+        alert("Sorry you do not get a discount. Your total is: $" + totalAmnt);
+    } else if (luckyNum === 1){
+        alert("Congrats, you won a 10% discount which is: $" + tenPer + " and your total is: $" + (totalAmnt - tenPer));
+    } else if (luckyNum === 2){
+        alert("Congrats, you won a 25% discount which is: $" + twentyFivePer + " and your total is: $" + (totalAmnt - twentyFivePer));
+    } else if (luckyNum === 3){
+        alert("Congrats, you won a 35% discount which is: $" + thirtyFivePer + " and your total is: $" + (totalAmnt - thirtyFivePer));
+    } else if (luckyNum === 4){
+        alert("Congrats, you won a 50% discount which is: $" + fiftyPer + " and your total is: $" + (totalAmnt - fiftyPer));
+    } else if (luckyNum === 5){
+        alert("Congrats, you won a 100% discount which is: $" + freePer + " and your total is: $" + (totalAmnt - freePer));
+    }
+
+}
+
+    calculateTotal(randomLuckyNum, 100);
+
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 5.
@@ -121,6 +160,13 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  */
 // Generate a random number between 0 and 6
 // var luckyNumber = Math.floor(Math.random() * 6);
+
+    //     EXERCISE 6
+
+    var userDefinedTotal = prompt("Please enter you total bill.");
+    console.log("Total entered by user: $" + userDefinedTotal);
+
+    calculateTotal(randomLuckyNum, userDefinedTotal);
 
 /**
  * TODO:
