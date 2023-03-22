@@ -28,19 +28,19 @@
 // *****EXERCISE 1.*******
 
     var userColor = prompt("What's you favorite color?")
-        function analyzeColor() {
+        function analyzeColor(userInput) {
             // toLowerCase makes userColor case-insensitive (Converting the string/user input to all lower case.)
-            if (userColor.toLowerCase() === "green"){
+            if (userInput.toLowerCase() === "green"){
                 alert("Wow! that's my favorite color too!");
-            } else if (userColor.toLowerCase() === "yellow"){
+            } else if (userInput.toLowerCase() === "yellow"){
                 alert("Yellow is the color of the Sun.");
-            } else {
+            } else{
                 alert("Nice pick.");
             }
-            console.log(userColor);
     }
 
-    analyzeColor();
+   analyzeColor(userColor);
+    console.log("The user entered: " + userColor);
 
 // Don't change the next two lines!
 // These lines create two variables for you:
@@ -55,6 +55,10 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * You should see a different message every time you refresh the page
  */
 
+// ****** EXERCISE 2 *****
+    confirm("Do you want the computer to randomly generate a color?");
+    analyzeColor(randomColor);
+    console.log("Random generated color is: " + randomColor);
 /**
  * TODO:
  * Comment out the code above, and refactor your function to use a switch-case statement
