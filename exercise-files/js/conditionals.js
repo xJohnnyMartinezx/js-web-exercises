@@ -189,19 +189,63 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
 
 // EXERCISE 7
 
-    var userConfirm = confirm("Would you like to enter a number?");
-    console.log(userConfirm);
-    function enterANumber(){
+
+
+    function wantToEnterANumber(){
+        var userConfirm = confirm("Would you like to enter a number?");
         if (userConfirm === true) {
-            prompt("Please enter a number?");
+            return enterANum();
         } else {
             alert("OK, thanks for playing.")
         }
     }
 
-    function alerts(num){
-        return alert("")
+    function enterANum(){
+        var userInput = prompt("Please enter a number?");
+        if (isNaN(parseInt(userInput))){
+            return alert("You did not enter a number, please enter a number.") + enterANum();
+        } else {
+            console.log(userInput);
+            return numIsOddOrEven(userInput);
+        }
     }
+
+
+    function numIsOddOrEven(userNum){
+        if (userNum % 2 === 1){
+            return alert("The number you entered is an 'Odd' number.") + isPositiveOrNegative(userNum);
+        } else if (userNum % 2 === 0){
+            return alert("The number you entered is an 'Even' number.") + isPositiveOrNegative(userNum);
+        }
+        console.log(userNum + " line 221");
+    }
+
+    function isPositiveOrNegative(userNum){
+        if (Math.sign(userNum) === 0){
+            return alert("The number you entered is a 'Positive' 0.")
+        } else if (Math.sign(userNum) === -0){
+            return alert("The number you entered is a 'Negative' 0.")
+        }else if (Math.sign(userNum) === 1){
+            return alert("The number you entered is a 'Positive' number.")
+        } else if (Math.sign(userNum) === -1){
+            return alert("The number you entered is a 'Negative' number.")
+        }
+    }
+
+
+
+    wantToEnterANumber();
+
+
+
+
+
+
+
+
+    // function alerts(num){
+    //     return alert("")
+    // }
 
 
 })();
