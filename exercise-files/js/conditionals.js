@@ -202,50 +202,77 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
 
     function enterANum(){
         var userInput = prompt("Please enter a number?");
-        if (isNaN(parseInt(userInput))){
+        var convertedUserInput = parseInt(userInput);
+        if (isNaN(convertedUserInput)){
             return alert("You did not enter a number, please enter a number.") + enterANum();
         } else {
-            console.log(userInput);
-            return numIsOddOrEven(userInput);
+            // console.log(typeof convertedUserInput);
+            // console.log(convertedUserInput);
+            return numIsOddOrEven(convertedUserInput);
         }
     }
 
 
-    function numIsOddOrEven(userNum){
-        if (userNum % 2 === 1){
+
+
+    function numIsOddOrEven(userNum) {
+        if (Math.sign(userNum) === -0 || Math.sign(userNum) === 0){
+            return alert("You entered 0 or -0, and according to the internet your entry is an 'Even' number.")+ isPositiveOrNegative(userNum);
+        }else if (userNum % 2 === 1 || Math.sign(userNum) === -1){
             return alert("The number you entered is an 'Odd' number.") + isPositiveOrNegative(userNum);
-        } else if (userNum % 2 === 0){
+        } else if (userNum % 2 === 0 || Math.sign(userNum) === 1){
             return alert("The number you entered is an 'Even' number.") + isPositiveOrNegative(userNum);
         }
         console.log(userNum + " line 221");
     }
 
     function isPositiveOrNegative(userNum){
+        console.log(Math.sign(userNum));
+        console.log(userNum);
         if (Math.sign(userNum) === 0){
-            return alert("The number you entered is a 'Positive' 0.")
+            return alert("The number you entered is a 'Positive' number. line 233") + userNumPlus100(userNum);
         } else if (Math.sign(userNum) === -0){
-            return alert("The number you entered is a 'Negative' 0.")
+            return alert("The number you entered is a 'Negative' negative. line 235") + userNumPlus100(userNum);
         }else if (Math.sign(userNum) === 1){
-            return alert("The number you entered is a 'Positive' number.")
+            return alert("The number you entered is a 'Positive' number. line 237") + userNumPlus100(userNum);
         } else if (Math.sign(userNum) === -1){
-            return alert("The number you entered is a 'Negative' number.")
+            return alert("The number you entered is a 'Negative' number. line 239") + userNumPlus100(userNum);
         }
     }
 
-
+    function userNumPlus100(userNum){
+        return alert("The number you entered plus 100 is: " + (userNum + 100));
+    }
 
     wantToEnterANumber();
 
-
-
-
-
-
-
-
-    // function alerts(num){
-    //     return alert("")
+    // function numberGame() {
+    //     let wannaHelp = confirm("Would you like to enter a number?");
+    //     if (wannaHelp) {
+    //         let numberInput = prompt('Please enter a number:');
+    //         if (isNaN(parseFloat(numberInput))) {
+    //             alert('You have entered an incorrect data type. Please enter a number');
+    //             return 'You have entered an incorrect data type. Please enter a number'
+    //         } else if (numberInput % 2 === 0) {
+    //             alert('Your number is even.');
+    //             alert('Your number + 100 = ' + (parseFloat(numberInput) + 100));
+    //             if (Math.sign(numberInput) === 1) {
+    //                 alert('Your number is positive.')
+    //             } else {
+    //                 alert('Your number is negative.')
+    //             }
+    //         } else {
+    //             alert('Your number is odd.');
+    //             alert('Your number + 100 = ' + (parseFloat(numberInput) + 100));
+    //             if (Math.sign(numberInput) === 1) {
+    //                 alert('Your number is positive.')
+    //             } else {
+    //                 alert('Your number is negative.')
+    //             }
+    //         }
+    //     }
+    //
     // }
-
+    // numberGame();
 
 })();
