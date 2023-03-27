@@ -42,9 +42,13 @@
 
     console.log("vvv Exercise 4");
 
-    for (var x = 1; x <=9; x++){
-        console.log();
+    // var rows = 9;
+
+    for (var x = 1; x <= 9; x++){
+        for (var a = 1; a <= x; a++) {
+
         }
+    }
 
 
 
