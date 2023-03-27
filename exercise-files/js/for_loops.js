@@ -44,13 +44,17 @@
 
     // var rows = 9;
 
-    for (var x = 1; x <= 9; x++){
-        for (var a = 1; a <= x; a++) {
+    // for (var x = 1; x <= 9; x++){
+    //     for (var a = 1; a <= x; a++) {
+    //
+    //     }
+    // }
 
-        }
+//  EXERCISE 5
+    for (let k = 100; k > 0; k--) {
+        console.log(k);
+
     }
-
-
 
 
 
