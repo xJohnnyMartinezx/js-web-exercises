@@ -123,7 +123,7 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
     //
     // console.log(twoPer);
 
-// function calculateTotal(luckyNum, totalAmnt){
+// function calculateTotal(luckyNum, totalAmnt){ç
 //
 //     // Discounts:
 //     var tenPer = totalAmnt * 0.10;
