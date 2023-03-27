@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Konami Code</title>
 </head>
@@ -11,25 +11,48 @@
   "use strict";
 
   var keyCodeArr = [38, 38, 40, 40, 37, 39, 37, 39, 65, 66, 13];
-  var konamiPosition = 0;
-  // var success = "Success!!!";
+  // STARTING AT INDEX 0.
+  var currentPosition = 0;
+  // STARTING LIVES.
+  var lives = 3;
 
   $(document).keyup(function(event){
-    console.log(event.keyCode);
+    // ***** SHOWS THE KEY(KEYCODE) BEING PRESSED.
+    console.log("USER ENTRY: " + event.keyCode);
 
-    let expectedKey = keyCodeArr[konamiPosition];
+    // ***** CHECKING keyCodeArr's CURRENT POSITION(INDEX) AND ASSIGNING IT TO expectedKey.
+    // expectedKey WILL EQUAL THE KEYCODE AT THE CURRENT POSITION(INDEX).
+    let expectedKey = keyCodeArr[currentPosition];
+    console.log("EXPECTED ENTRY: " + expectedKey);
+    // ***** ASSIGNING keyPress TO THE CURRENT USER INPUT.
     let keyPress = event.keyCode;
 
+    // ***** IF THE CURRENT POSITION IN keyCodeArr MATCHES THE CURRENT USER INPUT,
     if (expectedKey === keyPress){
-      konamiPosition++;
-      if (konamiPosition === keyCodeArr.length){
-        $("body").append(`<h1> Success!! </h1>`);
+      // THEN MOVE ON TO NEXT POSITION(INDEX).
+      currentPosition++;
+      // console.log("line 32: " + currentPosition);
+      // ***** IF CURRENT POSITION(INDEX) REACHES THE SAME INDEX AS keyCodeArr,
+      if (currentPosition === keyCodeArr.length){
+        console.log("line 36: " + keyCodeArr.length)
+        var extraLives = 30;
+        var newTotalLives = lives + extraLives;
+        // THEN APPEND "SUCCESS!!" TO THE <h1> TAG AND NEW NUM OF LIVES....WITHIN THE PARENT <body> TAG.
+        $("body").append(`
+                    <h1> Success!! </h1>
+                    <p> You now have a total of ${newTotalLives} lives!!!</p>
+                        `);
 
-        konamiPosition =0;
+
+        // ***** RESET INDEX COUNTER.
+        currentPosition = 0;
       }
     } else {
-      konamiPosition = 0;
+      // ***** IF USER INPUT IS WRONG, THEN ALERT.
       alert("You shall NOT pass....not with those keys!");
+
+      // ***** RESET INDEX COUNTER.
+      currentPosition = 0;
     }
 
   });
