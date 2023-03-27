@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Konami Code</title>
+</head>
+<body>
+<h1>Konami Code</h1>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script>
+  "use strict";
+
+  var keyCodeArr = [38, 38, 40, 40, 37, 39, 37, 39, 65, 66, 13];
+  var konamiPosition = 0;
+  // var success = "Success!!!";
+
+  $(document).keyup(function(event){
+    console.log(event.keyCode);
+
+    let expectedKey = keyCodeArr[konamiPosition];
+    let keyPress = event.keyCode;
+
+    if (expectedKey === keyPress){
+      konamiPosition++;
+      if (konamiPosition === keyCodeArr.length){
+        $("body").append(`<h1> Success!! </h1>`);
+
+        konamiPosition =0;
+      }
+    } else {
+      konamiPosition = 0;
+      alert("You shall NOT pass....not with those keys!");
+    }
+
+  });
+
+
+
+</script>
+</body>
+</html>
