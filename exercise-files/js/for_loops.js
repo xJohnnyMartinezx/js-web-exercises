@@ -51,9 +51,8 @@
     // }
 
 //  EXERCISE 5
-    for (let k = 100; k > 0; k--) {
+    for (let k = 100; k > 0; k-=5) {
         console.log(k);
-
     }
 
 
