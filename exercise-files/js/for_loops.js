@@ -40,20 +40,26 @@
 
 //  EXERCISE 4
 
-    console.log("vvv Exercise 4");
-
-    // var rows = 9;
-
-    // for (var x = 1; x <= 9; x++){
-    //     for (var a = 1; a <= x; a++) {
+    // console.log("vvv Exercise 4");
     //
+    // var rows = 9;
+    // var output = "";
+    //
+    // for (var x = 1; x <= rows; x++){
+    //     for (var y = 1; y <= x; y++) {
+    //         output += y + "";
     //     }
+    //     console.log(output);
+    //     output = "";
     // }
 
-//  EXERCISE 5
-    for (let k = 100; k > 0; k-=5) {
-        console.log(k);
-    }
+    // console.log("vvv Exercise 5");
+    //  EXERCISE 5
+//     for (let k = 100; k > 0; k-=5) {
+//         console.log(k);
+//     }
+
+
 
 
 
