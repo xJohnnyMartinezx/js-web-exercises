@@ -7,81 +7,88 @@
     <h1>Konami Code</h1>
     <div></div>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+            crossorigin="anonymous">
+    </script>
     <script>
       "use strict";
 
-      var keyCodeArr = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
-      // STARTING AT INDEX 0.
-      var currentPosition = 0;
-      // STARTING LIVES.
-      var lives = 3;
-
-      $(document).keyup(function(event){
-        // ***** SHOWS THE KEY(KEYCODE) BEING PRESSED.
-        console.log("USER ENTRY: " + event.keyCode);
-
-        // ***** CHECKING keyCodeArr's CURRENT POSITION(INDEX) AND ASSIGNING IT TO expectedKey.
-        // expectedKey WILL EQUAL THE KEYCODE AT THE CURRENT POSITION(INDEX).
-        let expectedKey = keyCodeArr[currentPosition];
-        console.log("EXPECTED ENTRY: " + expectedKey);
-        // ***** ASSIGNING keyPress TO THE CURRENT USER INPUT.
-        let keyPress = event.keyCode;
-
-        // ***** IF THE CURRENT POSITION IN keyCodeArr MATCHES THE CURRENT USER INPUT,
-        if (expectedKey === keyPress){
-          // THEN MOVE ON TO NEXT POSITION(INDEX).
-          currentPosition++;
-          // console.log("line 35: " + currentPosition);
-
-          // ***** IF CURRENT POSITION(INDEX) REACHES THE SAME INDEX AS keyCodeArr,
-          if (currentPosition === keyCodeArr.length){
-            console.log("line 39: " + keyCodeArr.length)
-            var extraLives = 30;
-            var newTotalLives = lives + extraLives;
-
-            // THEN APPEND "SUCCESS!!" TO THE <h1> TAG AND NEW NUM OF LIVES....WITHIN THE PARENT <body> TAG.
-            $("body").append(`
-                        <h1> Success!! </h1>
-                        <p> You now have a total of ${newTotalLives} lives!!!</p>
-                            `);
-
-            // ***** RESET INDEX COUNTER.
-            currentPosition = 0;
-          }
-        } else {
-          // ***** IF USER INPUT IS WRONG, THEN ALERT.
-          alert("You shall NOT pass....not with those keys!");
-
-          // ***** RESET INDEX COUNTER.
-          currentPosition = 0;
-        }
-
-      // var keyCodeArr = [38, 38, 40, 40, 37, 39, 37, 39, 65, 66, 13];
-      //
-      // var userInputArr = [];
+      // var keyCodeArr = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
       // // STARTING AT INDEX 0.
       // var currentPosition = 0;
       // // STARTING LIVES.
       // var lives = 3;
       //
-      //   $(document).keyup(function(event){
-      //     // ***** SHOWS THE KEY(KEYCODE) BEING PRESSED.
-      //     console.log("USER ENTRY: " + event.keyCode);
-      //     var expectedEntry = keyCodeArr[currentPosition];
-      //     var userInput = event.keyCode;
+      // $(document).keyup(function(event){
+      //   // ***** SHOWS THE KEY(KEYCODE) BEING PRESSED.
+      //   console.log("USER ENTRY: " + event.keyCode);
       //
-      //       if (userInput === expectedEntry){
-      //         userInputArr.push(userInput);
-      //         currentPosition++;
-      //         console.log("line 75")
-      //       console.log("New Array: " + userInputArr);
-      //       }
-      //     for (let i = 0; i < userInputArr.length; i++) {
-      //       if (userInputArr[i] === expectedEntry) {
-      //         console.log("success")
-      //       }
+      //   // ***** CHECKING keyCodeArr's CURRENT POSITION(INDEX) AND ASSIGNING IT TO expectedKey.
+      //   // expectedKey WILL EQUAL THE KEYCODE AT THE CURRENT POSITION(INDEX).
+      //   let expectedKey = keyCodeArr[currentPosition];
+      //   console.log("EXPECTED ENTRY: " + expectedKey);
+      //   // ***** ASSIGNING keyPress TO THE CURRENT USER INPUT.
+      //   let keyPress = event.keyCode;
+      //
+      //   // ***** IF THE CURRENT POSITION IN keyCodeArr MATCHES THE CURRENT USER INPUT,
+      //   if (expectedKey === keyPress){
+      //     // THEN MOVE ON TO NEXT POSITION(INDEX).
+      //     currentPosition++;
+      //     // console.log("line 35: " + currentPosition);
+      //
+      //     // ***** IF CURRENT POSITION(INDEX) REACHES THE SAME INDEX AS keyCodeArr,
+      //     if (currentPosition === keyCodeArr.length){
+      //       console.log("line 39: " + keyCodeArr.length)
+      //       var extraLives = 30;
+      //       var newTotalLives = lives + extraLives;
+      //
+      //       // THEN APPEND "SUCCESS!!" TO THE <h1> TAG AND NEW NUM OF LIVES....WITHIN THE PARENT <body> TAG.
+      //       $("body").append(`
+      //                   <h1> Success!! </h1>
+      //                   <p> You now have a total of ${newTotalLives} lives!!!</p>
+      //                       `);
+      //
+      //       // ***** RESET INDEX COUNTER.
+      //       currentPosition = 0;
       //     }
+      //   } else {
+      //     // ***** IF USER INPUT IS WRONG, THEN ALERT.
+      //     alert("You shall NOT pass....not with those keys!");
+      //
+      //     // ***** RESET INDEX COUNTER.
+      //     currentPosition = 0;
+      //   }
+
+      var keyCodeArr = [38, 38, 40, 40, 37, 39, 37, 39, 65, 66, 13];
+
+      var userInputArr = [];
+      // STARTING AT INDEX 0.
+      var currentPosition = 0;
+      // STARTING LIVES.
+      var lives = 3;
+
+        $(document).keyup(function(event){
+          // ***** SHOWS THE KEY(KEYCODE) BEING PRESSED.
+          console.log("USER ENTRY: " + event.keyCode);
+          var expectedEntry = keyCodeArr[currentPosition];
+          var userInput = event.keyCode;
+
+            if (userInput === expectedEntry){
+              userInputArr.push(userInput);
+              currentPosition++;
+              console.log("line 75")
+            console.log("New Array: " + userInputArr);
+              for (let i = 0; i < userInputArr.length; i++) {
+                if (userInputArr[i] === expectedEntry) {
+                  console.log("success")
+                  currentPosition = 0;
+                }
+              }
+            } else {
+            alert("Try Again");
+            currentPosition = 0;
+          }
 
 
 
