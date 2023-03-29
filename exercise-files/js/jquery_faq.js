@@ -18,14 +18,13 @@ $(document).ready(function (){
 
     })
 
+    let turtleImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePHvWxVaNNVnu3eXuBSp-ln1wYxNdTpQFkOBRvbwpd4sLXNV7WqioDQ9-vALhC6XNT1w&usqp=CAU";
 
-    // $("#hl-toggle > li").click(function () {
-    //     $(this).toggleClass("yellow-bg")
-    //
-    //     if ($(this).hasClass("yellow-bg") === true) {
-    //         $(this).removeClass("#yellow-bg")
-    //     }
-    // })
+
+    $("#list-items").click(function () {
+        $( "dd:nth-of-type(2)" ).css("content", 'url(' + turtleImg + ')')
+            .addClass( "nth" );
+    })
 
 
 
