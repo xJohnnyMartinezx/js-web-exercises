@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Blog</title>
+</head>
+<body>
+
+<h1 style="text-align: center">Posts</h1>
+<br>
+<div id="posts">
+    <table id="postsTable">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Contents</th>
+            <th>Date</th>
+            <th>Categories</th>
+        </tr>
+        </thead>
+        <tbody id="insertPostsData"></tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous">
+
+</script>
+<script>
+    "use strict";
+    // IIFE
+    (function (){
+
+
+        $.get("data/blog.json").done(function (data){
+            console.log(data);
+
+            // USING FOREACH TO LOOP THROUGH EACH ITEM IN JSON DATA
+            data.forEach(function (eachPost){
+                console.log(eachPost.title);
+                console.log(eachPost.content);
+                console.log(eachPost.date);
+                console.log(eachPost.categories);
+
+                var postTitle = eachPost.title;
+                var postContent = eachPost.content;
+                var postDate = eachPost.date;
+                var postCat = eachPost.categories;
+
+                $("#insertPostsData").append(`
+                    <tr>
+                    <td style="white-space: nowrap">${postTitle}</td>
+                    <td>${postContent}</td>
+                    <td>${postDate}</td>
+                    <td>${postCat}</td>
+                    </tr>
+                    `)
+
+            })
+
+
+        });
+
+
+    })();
+</script>
+
+
+<script></script>
+</body>
+</html>
