@@ -30,29 +30,29 @@
             (function() {
                 "use strict";
                 // TODO: Create an AJAX GET request for the file under data/inventory.json
-                $.get("data/inventory.json").done(function (data){
-                    console.log(data);
-            
-            
-                // TODO: Take the data from inventory.json and append it to the products table
-                //       HINT: Your data should come back as a JSON object; use console.log() to inspect
-                //             its contents and fields
-                //       HINT: You will want to target #insertProducts for your new HTML elements
+                function reloadInventory() {
+                    $.get("data/inventory.json").done(function (data) {
+                        console.log(data);
 
 
-                    function reloadInventory(){
-                    data.forEach(function (dataItem){
-                        // console.log(dataItem.title);
-                        // console.log(dataItem.quantity);
-                        // console.log(dataItem.categories);
-                        // console.log(dataItem.price);
+                        // TODO: Take the data from inventory.json and append it to the products table
+                        //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+                        //             its contents and fields
+                        //       HINT: You will want to target #insertProducts for your new HTML elements
 
-                        var title = dataItem.title;
-                        var qty = dataItem.quantity;
-                        var cat = dataItem.categories;
-                        var price = dataItem.price;
 
-                        $("#insertProducts").append(`
+                        data.forEach(function (dataItem) {
+                            // console.log(dataItem.title);
+                            // console.log(dataItem.quantity);
+                            // console.log(dataItem.categories);
+                            // console.log(dataItem.price);
+
+                            var title = dataItem.title;
+                            var qty = dataItem.quantity;
+                            var cat = dataItem.categories;
+                            var price = dataItem.price;
+
+                            $("#insertProducts").append(`
                                 <tr>
                                 <td>${title}</td>
                                 <td>${qty}</td>
@@ -60,15 +60,15 @@
                                 <td>${price}</td>
                                 </tr>
                                 `)
-                    });
-                    }
+                        });
 
-                    $(document).ready(function () {
+                    })
+                }
+                $(document).ready(function () {
+                    reloadInventory();
+                    $("#refresh-butt").click(function () {
+                        $("#insertProducts").append(` `)
                         reloadInventory();
-                        $("#refresh-butt").click(function () {
-                            $("#insertProducts").append(` `)
-                            reloadInventory();
-                        })
                     })
                 })
 
