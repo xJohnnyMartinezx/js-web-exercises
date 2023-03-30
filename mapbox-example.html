@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MapBox API</title>
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+<body>
+<input type="text" id="search">
+<button id="sub-butt" type="button">submit</button>
+
+<!--MAPBOX-->
+
+<div id='map' style='width: 400px; height: 300px;'></div>
+<script src = "js/keys.js"></script>
+<script src = "js/mapbox-geocoder.js"></script>
+<script>
+  mapboxgl.accessToken = MAPBOX;
+  const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    center: [-74.5, 40], // starting position [lng, lat]
+    zoom: 9, // starting zoom
+  });
+
+  // ADDING A MARKET
+  let marker = new mapboxgl
+          // GIVING MARKER OBJECT A LOCATION
+          .Marker().setLngLat([-74.5, 40])
+          // ADDING MARKER OBJECT TO MAP
+          .addTo(map);
+
+  //   SETTING A POPUP
+  let popup = new mapboxgl.Popup()
+          // GIVING POPUP OBJECT A LOCATION
+          .setLngLat([-74.5, 40])
+          // GIVING THE POPUP A MESSAGE
+          .setHTML("<h1>Dallas</h1>")
+  // SETS POPUP WHEN MARKER IS CLICKED ON
+  marker.setPopup(popup);
+
+  //   GEOCODER FUNCTION
+
+  // TARGETING THE SUBMIT BUTTON IN MY HTML
+  document.getElementById("sub-butt").addEventListener("click", function (){
+// SETTING THE FIRST PARAMETER OF geocode() AS THE VALUE TYPED INTO THE SEARCH BOX, SECOND PARAM IS API KEY
+    let currentLocation = geocode(document.getElementById("search").value, MAPBOX);
+    console.log(currentLocation);
+    // .then IS GETTING THE RESULTS FROM PROMISE AND FILTER THEM INTO "center" AS LAT AND LNG AT INDEX 0, AND 1.
+    currentLocation.then(function (results){
+      console.log(results);
+      map.setCenter([results[0], results[1]]);
+    });
+  });
+
+  //   REVERSE GEOCODER
+
+  // reverse geocode method from mapbox-geocoder-utils.js
+  reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX).then(function(results) {
+    // logs the address for The Alamo
+    console.log(results);
+  });
+
+
+</script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous"></script>
+</body>
+</html>
