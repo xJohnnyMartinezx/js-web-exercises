@@ -30,18 +30,20 @@
             (function() {
                 "use strict";
                 // TODO: Create an AJAX GET request for the file under data/inventory.json
-                function reloadInventory() {
-                    $.get("data/inventory.json").done(function (data) {
+
+            
+            
+                // TODO: Take the data from inventory.json and append it to the products table
+                //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+                //             its contents and fields
+                //       HINT: You will want to target #insertProducts for your new HTML elements
+
+
+                var html = ";"
+                function reloadInventory(){
+                    $.get("data/inventory.json").done(function (data){
                         console.log(data);
-
-
-                        // TODO: Take the data from inventory.json and append it to the products table
-                        //       HINT: Your data should come back as a JSON object; use console.log() to inspect
-                        //             its contents and fields
-                        //       HINT: You will want to target #insertProducts for your new HTML elements
-
-
-                        data.forEach(function (dataItem) {
+                        data.forEach(function (dataItem){
                             // console.log(dataItem.title);
                             // console.log(dataItem.quantity);
                             // console.log(dataItem.categories);
@@ -52,25 +54,29 @@
                             var cat = dataItem.categories;
                             var price = dataItem.price;
 
-                            $("#insertProducts").append(`
-                                <tr>
-                                <td>${title}</td>
-                                <td>${qty}</td>
-                                <td>${cat}</td>
-                                <td>${price}</td>
-                                </tr>
-                                `)
-                        });
 
+                            html += "<tr>";
+                            html += "<th>" + title + "</th>";
+                            html += "<th>" + qty + "</th>";
+                            html += "<th>" + price + "</th>";
+                            html += "<th>" + cat.join(', ') + "</th>";
+                            html += "</tr>";
+
+                        });
+                        $('#insertProducts').html(html);
                     })
                 }
+
+
                 $(document).ready(function () {
                     reloadInventory();
                     $("#refresh-butt").click(function () {
+                        html = "";
                         $("#insertProducts").append(` `)
                         reloadInventory();
                     })
                 })
+
 
             
             })();
