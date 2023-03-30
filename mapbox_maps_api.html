@@ -13,8 +13,9 @@
 <!--MAPBOX-->
 
 <div id='map' style='width: 400px; height: 300px;'></div>
+<script src = "js/keys.js"></script>
 <script>
-  mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obm55Y29kZXVwIiwiYSI6ImNsZnU0MnF2ZjA3NWwza3BmZnoxZXB5cWUifQ.iwYNJ4S701A7CqkBhX8yuA';
+  mapboxgl.accessToken = MAPBOX;
   const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
