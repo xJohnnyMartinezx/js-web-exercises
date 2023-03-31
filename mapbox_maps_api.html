@@ -11,6 +11,13 @@
     <body>
         <input type="text" id="search">
         <button id="sub-butt" type="button">submit</button>
+        <label for="user-zoom">Choose a zoom level:</label>
+
+        <select name="zoom-level" id="user-zoom" onchange="userZoom()">
+            <option id="user-zoom-5" class="data" value="5">5</option>
+            <option id="user-zoom-15" class="data" value="15">15</option>
+            <option id="user-zoom-20" class="data" value="20">20</option>
+        </select>
 
         <!--MAPBOX-->
 
@@ -41,12 +48,14 @@
             ]
 
 
-
+            // ***** LINES 44-54 ARE WHAT ACTUALLY SET THE MAP ON THE PAGE.********
             mapboxgl.accessToken = MAPBOX;
             const map = new mapboxgl.Map({
+                // vvv SETTING THE MAP INSIDE THE <DIV> CONTAINER WITH THE ID OF "map" (LINE 17)
                 container: 'map', // container ID
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
                 style: 'mapbox://styles/mapbox/streets-v12', // style URL
+                // vvv STARTING POSITION OF THE MAP (GETS OVERRIDEN BY GEOCODER (LINE 58-65) IF DESIGNATED)
                 center: [-74.5, 40], // starting position [lng, lat]
                 zoom: 20 // starting zoom
             });
@@ -62,18 +71,19 @@
                 map.setZoom(15);
             })
 
-            // FOREACH TO LOOP THROUGH favRest ARRAY
+            // FOREACH TO LOOP THROUGH favRest ARRAY TO ACCESS DATA IN favRest ARRAY. USING "dataItem" AS FUNCTION PARAM.
             favRest.forEach(function (dataItem){
-                console.log(dataItem.name);
-                console.log(dataItem.address);
-                console.log(dataItem.coordinates);
+                // **** ^^^ CAN ALSO BE WRITTEN LIKE : favRest.forEach((dataItem) => {
+                // console.log(dataItem.name);
+                // console.log(dataItem.address);
+                // console.log(dataItem.coordinates);
 
                 var name = dataItem.name;
                 var address = dataItem.address;
                 var photo = dataItem.image;
 
                 let marker = new mapboxgl.Marker()
-                    .setLngLat([dataItem.coordinates[0], dataItem.coordinates[1]], )
+                    .setLngLat([dataItem.coordinates[0], dataItem.coordinates[1]],)
                     .addTo(map);
 
                   // SETTING A POPUP
@@ -85,27 +95,23 @@
                             "<h3>" + address + "</h3>" +
                        " <img src='" + photo + "' alt='rest image' style='width: 200px; height: 150px'/>")
                 // SETS POPUP WHEN MARKER IS CLICKED ON
+                // CHAINING setPopup() TO "marker" VARIABLE ON LINE 75 MAKES THE "POPUP" POPUP WHEN THE MARKER IS CLICKED.
                 marker.setPopup(popup);
 
             })
 
-            //     CREATING A MARKER FOR FAVORITE RESTAURANT
-            // let marker = new mapboxgl.Marker()
-            //     .setLngLat([-119.29219428230779, 34.27869764212124], )
-            //     .addTo(map);
-
-            //   SETTING A POPUP
-            // let popup = new mapboxgl.Popup()
-            //     // GIVING POPUP OBJECT A LOCATION
-            //     .setLngLat([-119.29219428230779, 34.27869764212124])
-            //     // GIVING THE POPUP A MESSAGE
-            //     .setHTML("<h1>BarrelHouse 101</h1>")
-            // // SETS POPUP WHEN MARKER IS CLICKED ON
-            // marker.setPopup(popup);
-
-
-
-
+        //     USER SELECTED ZOOM LEVEL
+            function userZoom() {
+                let userSelection = document.getElementById("user-zoom").value;
+                console.log(userSelection);
+                if (userSelection === "5"){
+                    map.setZoom(5);
+                } else if (userSelection === "15"){
+                    map.setZoom(15);
+                } else if (userSelection === "20"){
+                    map.setZoom(20);
+                }
+            }
         </script>
 
 
