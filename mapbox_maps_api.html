@@ -23,7 +23,7 @@
         </select>
 
 <!--    ******* HIDE/SHOW MARKERS BUTTON *********-->
-    <button id="hide-show-marker" type="button">Hide Markers</button>
+    <button id="hide-marker" type="button">Hide Markers</button>
 
 
     <!--MAPBOX-->
@@ -58,11 +58,11 @@
             // ***** LINES 53-62 ARE WHAT ACTUALLY SET THE MAP ON THE PAGE.********
             mapboxgl.accessToken = MAPBOX;
             const map = new mapboxgl.Map({
-                // vvv SETTING THE MAP INSIDE THE <DIV> CONTAINER WITH THE ID OF "map" (LINE 25)
+                // vvv SETTING THE MAP INSIDE THE <DIV> CONTAINER WITH THE ID OF "map" (LINE 31)
                 container: 'map', // container ID
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
                 style: 'mapbox://styles/mapbox/streets-v12', // style URL
-                // vvv STARTING POSITION OF THE MAP (GETS OVERRIDEN BY GEOCODER (LINE 66-73) IF DESIGNATED)
+                // vvv STARTING POSITION OF THE MAP (GETS OVERRIDEN BY GEOCODER (LINE 72-79) IF DESIGNATED)
                 center: [-74.5, 40], // starting position [lng, lat]
                 zoom: 20 // starting zoom
             });
@@ -101,12 +101,13 @@
                     .setHTML("<h1>" + name + "</h1>" +
                             "<h3>" + address + "</h3>" +
                        " <img src='" + photo + "' alt='rest image' style='width: 200px; height: 150px'/>")
-                // SETS POPUP WHEN MARKER IS CLICKED ON
-                // CHAINING setPopup() TO "marker" VARIABLE ON LINE 75 MAKES THE "POPUP" POPUP WHEN THE MARKER IS CLICKED.
+                // HIDES THE POPUP WHEN CLICK OUTSIDE OF IT. (***HAS TO BE PLACED ABOVE setPopup()***)
                 marker.togglePopup(popup);
+                // SETS POPUP WHEN MARKER IS CLICKED ON
+                // CHAINING setPopup() TO "marker" VARIABLE ON LINE 92 MAKES THE "POPUP" POPUP WHEN THE MARKER IS CLICKED.
                 marker.setPopup(popup)
-
-                document.getElementById('hide-show-marker').addEventListener("click", function () {
+                // HIDES THE MARKERS WHEN "HIDE MARKERS" BUTTON IS CLICKED
+                document.getElementById('hide-marker').addEventListener("click", function () {
                     marker.remove();
 
                 })
@@ -159,17 +160,7 @@
                 }
             }
 
-
-
-
-
-
-
-
         </script>
-
-
-
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"
                 integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
                 crossorigin="anonymous"></script>
