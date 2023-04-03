@@ -19,25 +19,76 @@
             integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
             crossorigin="anonymous"></script>
       <script src="js/mapbox-geocoder.js"></script>
+      <script src="js/weather_map.js"></script>
 
+      <style>
+          body { margin: 0; padding: 0; }
+          #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+      </style>
   </head>
   <body>
 
 <!--  WEATHER INFO CARDS -->
 <div id="weather-card" class="container d-flex justify-content-center">
-
 </div>
 
+
+<style>
+    .coordinates {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        display: none;
+    }
+</style>
 <!-- MAP -->
-<div id="map" style='width: 1000px; height: 600px;></div>
-<pre id="coordinates" className="coordinates"></pre>
+<div id="map" style='width: 1000px; height: 600px;'></div>
+<pre id="coordinates" class="coordinates"></pre>
+
+<script>
+    //     MAPBOX
+
+    mapboxgl.accessToken = MAPBOX;
+    const coordinates = document.getElementById('coordinates');
+    const map = new mapboxgl.Map({
+        container: 'map',
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [-96.79750770099064, 32.78110517375738],
+        zoom: 10
+    });
+
+    const marker = new mapboxgl.Marker({
+        draggable: true
+    })
+        .setLngLat([-96.79750770099064, 32.78110517375738])
+        .addTo(map);
+
+    function onDragEnd() {
+        const lngLat = marker.getLngLat();
+        coordinates.style.display = 'block';
+        coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+    }
+
+    marker.on('dragend', onDragEnd);
+
+
+
+
+</script>
 
 
 
 
 
 <!-- LINKED JS FILES-->
-<script src="js/weather_map.js"></script>
 <!--  BOOTSTRAP -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
         integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"

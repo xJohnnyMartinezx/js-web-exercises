@@ -33,34 +33,6 @@
         $('#weather-card').html(html);
     })
 
-//     MAPBOX
-
-        mapboxgl.accessToken = MAPBOX;
-        const coordinates = document.getElementById('coordinates');
-        const map = new mapboxgl.Map({
-        container: 'map',
-// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-        style: 'mapbox://styles/mapbox/streets-v12',
-        center: [0, 0],
-        zoom: 2
-    });
-
-        const marker = new mapboxgl.Marker({
-        draggable: true
-    })
-        .setLngLat([0, 0])
-        .addTo(map);
-
-        function onDragEnd() {
-        const lngLat = marker.getLngLat();
-        coordinates.style.display = 'block';
-        coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
-    }
-
-        marker.on('dragend', onDragEnd);
-
-
-
 
 
 })();
