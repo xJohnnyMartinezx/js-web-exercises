@@ -12,19 +12,18 @@
           rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
           crossorigin="anonymous">
+
 <!--      KEYS-->
       <script src="js/keys.js"></script>
-    <!--    JQUERY CDN-->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-            crossorigin="anonymous"></script>
-      <script src="js/mapbox-geocoder.js"></script>
+
+<!--    JQUERY CDN-->
+      <script
+              src="https://code.jquery.com/jquery-3.6.4.min.js"
+              integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+              crossorigin="anonymous"></script>
+<!--     LINKED JS FILES-->
       <script src="js/weather_map.js"></script>
 
-      <style>
-          body { margin: 0; padding: 0; }
-          #map {top: 0; bottom: 0; width: 100%; }
-      </style>
   </head>
   <body>
   <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
@@ -32,159 +31,109 @@
 
   <div id="cityName"></div>
 
-  <label for="search">Search A City</label>
-  <input type="text" id="search">
-  <button id="sub-button" type="button">submit</button>
+<!--  vvv OLD SEARCH INPUT vvv-->
+<!--  <label for="search">Search A City</label>-->
+<!--  <input type="text" id="search">-->
+<!--  <button id="sub-button" type="button">submit</button>-->
+<!--  ^^^--------------------------^^^ -->
 
 <!--  WEATHER INFO CARDS -->
 <div id="weather-card" class="d-flex">
 </div>
 
-
-<style>
-    .coordinates {
-        background: rgba(0, 0, 0, 0.5);
-        color: #fff;
-        position: absolute;
-        bottom: 40px;
-        left: 10px;
-        padding: 5px 10px;
-        margin: 0;
-        font-size: 11px;
-        line-height: 18px;
-        border-radius: 3px;
-        display: none;
-    }
-</style>
-
-  <!--    Map Menu-->
-
-
-<!--  <div id="menu" class="d-none d-md-block">-->
-<!--    <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" checked="checked">-->
-<!--    &lt;!&ndash; See a list of Mapbox-hosted public styles at &ndash;&gt;-->
-<!--    &lt;!&ndash; https://docs.mapbox.com/api/maps/styles/#mapbox-styles &ndash;&gt;-->
-<!--    <label for="satellite-v9">satellite</label>-->
-<!--    <input id="light-v10" type="radio" name="rtoggle" value="light">-->
-<!--    <label for="light-v10">light</label>-->
-<!--    <input id="dark-v10" type="radio" name="rtoggle" value="dark">-->
-<!--    <label for="dark-v10">dark</label>-->
-<!--    <input id="streets-v11" type="radio" name="rtoggle" value="streets">-->
-<!--    <label for="streets-v11">streets</label>-->
-<!--    <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors">-->
-<!--    <label for="outdoors-v11">outdoors</label>-->
-<!--  </div>-->
-
 <!-- MAP -->
 <div id="map" style='width: 1000px; height: 600px;'></div>
-<pre id="coordinates" class="coordinates"></pre>
-
 <script>
 
 
 
     //     MAPBOX
-
+// ***** INITIALIZING MAP WITH SET COORDINATES FOR DALLAS, TX *******
     mapboxgl.accessToken = MAPBOX;
-    const coordinates = document.getElementById('coordinates');
     const map = new mapboxgl.Map({
         container: 'map',
-// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: 'mapbox://styles/mapbox/streets-v12',
         center: [-96.79750770099064, 32.78110517375738],
         zoom: 10
     });
 
-    const marker = new mapboxgl.Marker({
-        draggable: true
-    })
-    function add_marker (event) {
-        let coordinates = event.lngLat;
-        console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
-        marker.setLngLat(coordinates).addTo(map);
-        weatherCardData(coordinates.lng, coordinates.lat)
-    }
-
-    map.on('click', add_marker);
-    marker.remove();
+// ***** INITIALIZING WEATHER CARDS WITH SET COORDINATES FOR DALLAS, TX *******
     weatherCardData(-96.79750770099064, 32.78110517375738);
 
+// ***** CREATES A MARKER OBJECT THAT WILL BE USED FOR USER SEARCH AND DRAG FUNCTIONALITY ********
+    const marker = new mapboxgl.Marker({
+        draggable: true,
+      color: "purple"
+    })
 
+// ***** CREATES GEOCODER SEARCH BOX ON THE MAP ********
+    let geo = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl,
+      marker: false
 
-    // function onDragEnd() {
-    //     const lngLat = marker.getLngLat();
-    //     // console.log(lngLat);
-    //     // coordinates.style.display = 'block';
-    //     // coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
-    //     // map.setCenter([lngLat.lng, lngLat.lat]);
-    //     weatherCardData(lngLat.lng, lngLat.lat);
-    // }
-
-
-    // marker.on('dragend', onDragEnd);
-
-
-            let geo = new MapboxGeocoder({
-              accessToken: mapboxgl.accessToken,
-              mapboxgl: mapboxgl,
-              marker: false
-
-            })
-
+    })
+// ***** ADD GEOCODER SEARCH BOX TO MAP
     map.addControl(geo)
 
-    setGeocoderEventListener();
 
+// ***** RETRIEVING THE COORDINATES OF USER SEARCH RESULTS *********
+    geo.on("result", function (e) {
+      let searchCoordLng = e.result.geometry.coordinates[0];
+      let searchCoordLat = e.result.geometry.coordinates[1];
+      // console.log(e)
+      // PASSING RETRIEVED COORDINATES TO weatherCardData FUNCTION AS ITS TWO PARAMETERS.
+      weatherCardData(searchCoordLng, searchCoordLat);
+      // CREATING A NEW MARKER AND PASSING THE SAME RETRIEVED COORDINATES TO IT.
+      marker.setLngLat([searchCoordLng, searchCoordLat]).addTo(map);
+    });
 
+// ***** (CLICK EVENT LISTENER)...ADDS A MARKER TO THE MAP WHEREVER THE USER CLICKS BY CALLING THE add_marker FUNCTION********
+    map.on('click', addMarker);
+    // RETRIEVES THE COORDINATES FROM THE MARKER
+    function addMarker (event) {
+        let coordinates = event.lngLat;
+        // console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
+        // THIS ACTUALLY POPULATES THE MARKER ON THE MAP
+        marker.setLngLat(coordinates).addTo(map);
+        // PASSES MARKER COORDINATES TO weatherCardData FUNCTION
+        // SO THAT WEATHER CARD DATA CAN BE UPDATED TO MARKER'S CURRENT LOCATION
+        weatherCardData(coordinates.lng, coordinates.lat)
+    }
+    // REMOVES CURRENT MARKER WHEN USER CLICKS ON A NEW LOCATION.
+    marker.remove();
+
+    // **** (DRAGEND EVENT LISTENER)...THE CALLS onDragEnd FUNCTION WHEN STOPS DRAGGING THE MARKER *******
+    marker.on('dragend', onDragEnd);
+    // RETRIEVES THE MARKER COORDINATES ON USER DRAG END
     function onDragEnd() {
-      const lngLat = marker.getLngLat();
-      // console.log(lngLat);
-      // coordinates.style.display = 'block';
-      // coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
-      // map.setCenter([lngLat.lng, lngLat.lat]);
-      weatherCardData(lngLat.lng, lngLat.lat);
-  }
-  marker.on('dragend', onDragEnd);
-
-    function setGeocoderEventListener() {
-      geo.on("result", function (e) {
-        let searchCoordLng = e.result.geometry.coordinates[0];
-        let searchCoordLat = e.result.geometry.coordinates[1];
-        console.log(e)
-        weatherCardData(searchCoordLng, searchCoordLat);
-
-        marker.setLngLat([searchCoordLng, searchCoordLat]);
-
-      });
-
-
+        const lngLat = marker.getLngLat();
+        // console.log(lngLat);
+        // CENTERS THE MAP MARKER DRAG END LOCATION
+        map.setCenter([lngLat.lng, lngLat.lat]);
+        // PASSES MARKER COORDINATES TO weatherCardData FUNCTION
+        // SO THAT WEATHER CARD DATA CAN BE UPDATED TO MARKER'S CURRENT LOCATION
+        weatherCardData(lngLat.lng, lngLat.lat);
     }
 
 
-
-
-    // let geo = new MapboxGeocoder({
-    //   accessToken: mapboxgl.accessToken,
-    //   mapboxgl: mapboxgl,
-    //   marker: false
-    //
-    // })
-    // map.addControl(geo);
-    // console.log("line 102: " + geo.features);
-
-    // TARGETING THE SUBMIT BUTTON IN MY HTML
-    document.getElementById("sub-button").addEventListener("click", function (){
-// SETTING THE FIRST PARAMETER OF geocode() AS THE VALUE TYPED INTO THE SEARCH BOX, SECOND PARAM IS API KEY
-        let currentLocation = geocode(document.getElementById("search").value, MAPBOX);
-        console.log(currentLocation);
-        // .then IS GETTING THE RESULTS FROM PROMISE AND FILTER THEM INTO "center" AS LAT AND LNG AT INDEX 0, AND 1.
-        currentLocation.then(function (results){
-            console.log(results);
-            map.setCenter([results[0], results[1]]);
-            marker.setLngLat([results[0], results[1]]).addTo(map);
-            weatherCardData(results[0], results[1]);
-        });
-    });
+//     *******  vvv--OLD SEARCH INPUT TARGETING SUBMIT BUTTON (now using mapbox native search box)--vvv  ********
+//
+//     // TARGETING THE SUBMIT BUTTON IN MY HTML
+//     document.getElementById("sub-button").addEventListener("click", function (){
+// // SETTING THE FIRST PARAMETER OF geocode() AS THE VALUE TYPED INTO THE SEARCH BOX, SECOND PARAM IS API KEY
+//         let currentLocation = geocode(document.getElementById("search").value, MAPBOX);
+//         console.log(currentLocation);
+//         // .then IS GETTING THE RESULTS FROM PROMISE AND FILTER THEM INTO "center" AS LAT AND LNG AT INDEX 0, AND 1.
+//         currentLocation.then(function (results){
+//             console.log(results);
+//             map.setCenter([results[0], results[1]]);
+//             marker.setLngLat([results[0], results[1]]).addTo(map);
+//             weatherCardData(results[0], results[1]);
+//         });
+//     });
+//     ******* ^^^------------------------------------------^^^ ******
 
 
 
