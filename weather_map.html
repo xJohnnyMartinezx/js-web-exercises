@@ -97,6 +97,8 @@
         // console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
         // THIS ACTUALLY POPULATES THE MARKER ON THE MAP
         marker.setLngLat(coordinates).addTo(map);
+        // CENTERS THE MAP MARKER ON CLICK LOCATION
+        map.setCenter(coordinates);
         // PASSES MARKER COORDINATES TO weatherCardData FUNCTION
         // SO THAT WEATHER CARD DATA CAN BE UPDATED TO MARKER'S CURRENT LOCATION
         weatherCardData(coordinates.lng, coordinates.lat)
@@ -110,7 +112,7 @@
     function onDragEnd() {
         const lngLat = marker.getLngLat();
         // console.log(lngLat);
-        // CENTERS THE MAP MARKER DRAG END LOCATION
+        // CENTERS THE MAP MARKER ON DRAG END LOCATION
         map.setCenter([lngLat.lng, lngLat.lat]);
         // PASSES MARKER COORDINATES TO weatherCardData FUNCTION
         // SO THAT WEATHER CARD DATA CAN BE UPDATED TO MARKER'S CURRENT LOCATION
