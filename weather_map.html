@@ -74,11 +74,11 @@
       marker: false
 
     })
-// ***** ADD GEOCODER SEARCH BOX TO MAP
+// ***** ADDS THE MAPBOX GEOCODER NATIVE SEARCH BOX TO MAP
     map.addControl(geo)
 
 
-// ***** RETRIEVING THE COORDINATES OF USER SEARCH RESULTS *********
+// ***** RETRIEVING THE COORDINATES OF USER'S SEARCH RESULTS *********
     geo.on("result", function (e) {
       let searchCoordLng = e.result.geometry.coordinates[0];
       let searchCoordLat = e.result.geometry.coordinates[1];
@@ -104,7 +104,7 @@
     // REMOVES CURRENT MARKER WHEN USER CLICKS ON A NEW LOCATION.
     marker.remove();
 
-    // **** (DRAGEND EVENT LISTENER)...THE CALLS onDragEnd FUNCTION WHEN STOPS DRAGGING THE MARKER *******
+    // **** (DRAGEND EVENT LISTENER)...CALLS onDragEnd FUNCTION WHEN THE USER STOPS DRAGGING THE MARKER *******
     marker.on('dragend', onDragEnd);
     // RETRIEVES THE MARKER COORDINATES ON USER DRAG END
     function onDragEnd() {

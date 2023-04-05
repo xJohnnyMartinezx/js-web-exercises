@@ -10,16 +10,16 @@ function weatherCardData(lng, lat) {
     }).done(function (weatherData) {
         // console.log(weatherData);
 
-        // APPENDING CITY NAME TO <DIV> TAG INT HTML FILE WITH AN ID OF cityName
+        // APPENDING CITY NAME TO <DIV> TAG IN THE HTML FILE WITH AN ID OF cityName
         $('#cityName').html("<h1>" + "Today's weather in " + weatherData.city.name + "</h1>");
         // console.log(data.list);
         // console.log(data.list[0]);
 
-        // LOOPING THROUGH weatherData AND RETRIEVING THE DATA REQUIRED BY ME TO POPULATE MY WEATHER CARDS
-        // AND THEM TO MY EMPTY HTML STRING (LINE 5)
+        // LOOPING THROUGH weatherData AND RETRIEVING THE DATA I DEEM REQUIRED TO POPULATE MY WEATHER CARDS
+        // AND ADDS THE WEATHER CARDS TO MY EMPTY HTML STRING (LINE 5)
         for (let i = 0; i <= 39; i += 8) {
             // console.log(weatherData.list[i])
-            // CONVERTING OPEN WEATHER GIVEN DATE/TIME FORMAT TO A MORE HUMAN READABLE FORMAT
+            // CONVERTING "OPEN WEATHER" GIVEN DATE/TIME FORMAT TO A MORE HUMAN READABLE FORMAT
             const date = new Date(weatherData.list[i].dt_txt).toDateString();
             // console.log(date);
 
