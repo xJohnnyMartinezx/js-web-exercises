@@ -21,13 +21,25 @@
               src="https://code.jquery.com/jquery-3.6.4.min.js"
               integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
               crossorigin="anonymous"></script>
-<!--     LINKED JS FILES-->
+<!--     LINKED FILES-->
       <script src="js/weather_map.js"></script>
+      <link rel="stylesheet" href="css/weather_map.css">
 
   </head>
-  <body>
+<!--  <body>-->
+  <body style="background-color: #444444">
+
   <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+
+  <section class="row container-fluid mx-0 px-0">
+
+      <header id="city" class=" text-center mx-auto" style="background-color:rgba(45, 89, 119, 60)">
+          <h2 style="color: #0FB784FF">Weather App</h2>
+
+      </header>
+
+      <br>
 
   <div id="cityName"></div>
 
@@ -36,13 +48,17 @@
 <!--  <input type="text" id="search">-->
 <!--  <button id="sub-button" type="button">submit</button>-->
 <!--  ^^^--------------------------^^^ -->
-
+      <br>
 <!--  WEATHER INFO CARDS -->
 <div id="weather-card" class="d-flex">
 </div>
-
+      <br>
 <!-- MAP -->
-<div id="map" style='width: 1000px; height: 600px;'></div>
+<!--<div id="map" style='width: 1000px; height: 600px;'></div>-->
+  <div id="map-container" class="d-none d-md-block justify-content-center mt-3 mx-auto" style="width: 100%">
+      <div id='map' style='width: 100%; height: 500px;'></div>
+  </div>
+  </section>
 <script>
 
 
