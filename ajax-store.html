@@ -1,86 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Online Store</title>
-    </head>
-    <body>
-        
-        <h1>My Tool Store</h1>
-        
-        <table id="products">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Categories</th>
-                </tr>
-            </thead>
-            <tbody id="insertProducts"></tbody>
-        </table>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--    <head>-->
+<!--        <title>Online Store</title>-->
+<!--    </head>-->
+<!--    <body>-->
+<!--        -->
+<!--        <h1>My Tool Store</h1>-->
+<!--        -->
+<!--        <table id="products">-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th>Title</th>-->
+<!--                    <th>Quantity</th>-->
+<!--                    <th>Price</th>-->
+<!--                    <th>Categories</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody id="insertProducts"></tbody>-->
+<!--        </table>-->
 
-        <button id="refresh-butt" type="button">Refresh</button>
-        
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js" 
-                integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" 
-                crossorigin="anonymous">
-        </script>
-        
-        <script>
-            (function() {
-                "use strict";
-                // TODO: Create an AJAX GET request for the file under data/inventory.json
+<!--        <button id="refresh-butt" type="button">Refresh</button>-->
+<!--        -->
+<!--        <script src="https://code.jquery.com/jquery-2.2.4.min.js" -->
+<!--                integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" -->
+<!--                crossorigin="anonymous">-->
+<!--        </script>-->
+<!--        -->
+<!--        <script>-->
+<!--            (function() {-->
+<!--                "use strict";-->
+<!--                // TODO: Create an AJAX GET request for the file under data/inventory.json-->
 
-            
-            
-                // TODO: Take the data from inventory.json and append it to the products table
-                //       HINT: Your data should come back as a JSON object; use console.log() to inspect
-                //             its contents and fields
-                //       HINT: You will want to target #insertProducts for your new HTML elements
-
-
-                var html = ";"
-                function reloadInventory(){
-                    $.get("data/inventory.json").done(function (data){
-                        console.log(data);
-                        data.forEach(function (dataItem){
-                            // console.log(dataItem.title);
-                            // console.log(dataItem.quantity);
-                            // console.log(dataItem.categories);
-                            // console.log(dataItem.price);
-
-                            var title = dataItem.title;
-                            var qty = dataItem.quantity;
-                            var cat = dataItem.categories;
-                            var price = dataItem.price;
+<!--            -->
+<!--            -->
+<!--                // TODO: Take the data from inventory.json and append it to the products table-->
+<!--                //       HINT: Your data should come back as a JSON object; use console.log() to inspect-->
+<!--                //             its contents and fields-->
+<!--                //       HINT: You will want to target #insertProducts for your new HTML elements-->
 
 
-                            html += "<tr>";
-                            html += "<th>" + title + "</th>";
-                            html += "<th>" + qty + "</th>";
-                            html += "<th>" + price + "</th>";
-                            html += "<th>" + cat.join(', ') + "</th>";
-                            html += "</tr>";
+<!--                var html = ";"-->
+<!--                function reloadInventory(){-->
+<!--                    $.get("data/inventory.json").done(function (data){-->
+<!--                        console.log(data);-->
+<!--                        data.forEach(function (dataItem){-->
+<!--                            // console.log(dataItem.title);-->
+<!--                            // console.log(dataItem.quantity);-->
+<!--                            // console.log(dataItem.categories);-->
+<!--                            // console.log(dataItem.price);-->
 
-                        });
-                        $('#insertProducts').html(html);
-                    })
-                }
-
-
-                $(document).ready(function () {
-                    reloadInventory();
-                    $("#refresh-butt").click(function () {
-                        html = "";
-                        $("#insertProducts").append(` `)
-                        reloadInventory();
-                    })
-                })
+<!--                            var title = dataItem.title;-->
+<!--                            var qty = dataItem.quantity;-->
+<!--                            var cat = dataItem.categories;-->
+<!--                            var price = dataItem.price;-->
 
 
-            
-            })();
-        </script>
-    
-    </body>
-</html>
+<!--                            html += "<tr>";-->
+<!--                            html += "<th>" + title + "</th>";-->
+<!--                            html += "<th>" + qty + "</th>";-->
+<!--                            html += "<th>" + price + "</th>";-->
+<!--                            html += "<th>" + cat.join(', ') + "</th>";-->
+<!--                            html += "</tr>";-->
+
+<!--                        });-->
+<!--                        $('#insertProducts').html(html);-->
+<!--                    })-->
+<!--                }-->
+
+
+<!--                $(document).ready(function () {-->
+<!--                    reloadInventory();-->
+<!--                    $("#refresh-butt").click(function () {-->
+<!--                        html = "";-->
+<!--                        $("#insertProducts").append(` `)-->
+<!--                        reloadInventory();-->
+<!--                    })-->
+<!--                })-->
+
+
+<!--            -->
+<!--            })();-->
+<!--        </script>-->
+<!--    -->
+<!--    </body>-->
+<!--</html>-->
