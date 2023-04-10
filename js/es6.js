@@ -59,10 +59,12 @@ users.forEach(function(user) {
     return emails.push(user.email);
 });
 
-const userEmail = () => emails.push(users.email);
+// const userEmail = () => emails.push(users.email);
 
-userEmail();
-console.log(`line 65: ${emails}`);
+users.forEach(user => emails.push(user.email));
+
+// userEmail();
+// console.log(`line 65: ${emails}`);
 
 // ----------------------
 users.forEach(function(user) {
@@ -72,7 +74,7 @@ users.forEach(function(user) {
 const userName = () => names.push(users.name);
 
 userName();
-console.log(`line 75: ${names}`)
+// console.log(`line 75: ${names}`)
 
 // TODO: replace `var` with `let` in the following declaration
 let developers = [];
@@ -85,7 +87,7 @@ users.forEach(function(user) {
     // const languages = user.languages;
 
     const {name, email, languages} = user
-
+    //
     // console.log(name);
     // console.log(email);
     // console.log(languages);
@@ -96,7 +98,7 @@ users.forEach(function(user) {
     // developers.push(name + '\'s email is ' + email + name + ' knows ' + languages.join(', '));
 
     developers.push(`${name}'s email is ${email} ${name} knows ${languages}`);
-    // console.log(developers);
+    console.log(developers);
 
 });
 
