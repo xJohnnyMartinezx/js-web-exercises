@@ -123,3 +123,17 @@ function countWords(sentence) {
 
 countWords('Mary had a little lamb little lamb little lamb');
 // {Mary: 1, had: 1, a: 1, little: 3, lamb: 3}
+
+
+$.ajax({
+    url: 'https://randomuser.me/api/',
+    dataType: 'json',
+    success: function(data) {
+        // console.log(data);
+        console.log(data.results);
+        // newUserObj is the new obj we construct
+        data.results.reduce((newUserObj, user)=>{
+            newUserObj.name = user.name.first + " " + user.name.last
+        }, {});
+    }
+});
