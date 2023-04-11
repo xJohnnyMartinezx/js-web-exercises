@@ -1,0 +1,19 @@
+{
+  "movies": [
+    {
+      "title": "PATCHED movie",
+      "director": "edited director",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "My first Post",
+      "director": "Codeup"
+    },
+    {
+      "id": 3,
+      "title": "My second post",
+      "director": "Codeup"
+    }
+  ]
+}
