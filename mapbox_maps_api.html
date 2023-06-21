@@ -83,16 +83,22 @@
                            },
                            {
                                "name": "Corrales Mexican Food",
-                               "address" : "301 E Main St, Ventura, CA 93001",
+                               "address" : "795 E Thompson Blvd, Ventura, CA 93001",
                                "coordinates" : ["-119.2881414549982", "34.27860883389299"],
                                "image" : "https://lh5.googleusercontent.com/p/AF1QipOrjiazWGkp-kMphXZsG7hdjzIHTwXe71Yq9QMY=w408-h544-k-no"
                            },
                            {
                                "name": "Cajun Kitchen Cafe",
-                               "address" : "545 E Thompson Blvd, Ventura, CA 93001",
+                               "address" : "301 E Main St, Ventura, CA 93001",
                                "coordinates" : ["-119.29540487659114","34.281073359398704"],
                                "image" : "https://lh5.googleusercontent.com/p/AF1QipMHqxksb0tMDeW3tNPNYwtZ-8pS_LSAbm1MMfGn=w408-h306-k-no"
-                           }
+                           },
+                            {
+                                "name": "test",
+                                "address" : "806 E Thompson Blvd, Ventura, CA 93001",
+                                "coordinates" : ["-119.29540487659114","34.281073359398704"],
+                                "image" : "https://lh5.googleusercontent.com/p/AF1QipNOY7CEPOdSHzfF7KWmd7baTAQl_bt7LPRi6vFj=w408-h272-k-no"
+                            }
             ]
 
 
@@ -130,30 +136,64 @@
                 var address = dataItem.address;
                 var photo = dataItem.image;
 
-                let marker = new mapboxgl.Marker()
-                    .setLngLat([dataItem.coordinates[0], dataItem.coordinates[1]],)
-                    .addTo(map);
+                fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/" + dataItem.address + ".json" + "?" + 'access_token=' + MAPBOX)
+                    .then((response) => response.json())
+                    .then((response) => {console.log(response)
 
-                  // SETTING A POPUP
-                let popup = new mapboxgl.Popup()
-                    // GIVING POPUP OBJECT A LOCATION
-                    .setLngLat([dataItem.coordinates[0], dataItem.coordinates[1]])
-                    // GIVING THE POPUP A MESSAGE
-                    .setHTML("<h1>" + name + "</h1>" +
-                            "<h3>" + address + "</h3>" +
-                       " <img src='" + photo + "' alt='rest image' style='width: 200px; height: 150px'/>")
-                // HIDES THE POPUP WHEN CLICK OUTSIDE OF IT. (***HAS TO BE PLACED ABOVE setPopup()***)
-                marker.togglePopup(popup);
-                // SETS POPUP WHEN MARKER IS CLICKED ON
-                // CHAINING setPopup() TO "marker" VARIABLE ON LINE 92 MAKES THE "POPUP" POPUP WHEN THE MARKER IS CLICKED.
-                marker.setPopup(popup)
-                // HIDES THE MARKERS WHEN "HIDE MARKERS" BUTTON IS CLICKED
-                document.getElementById('hide-marker').addEventListener("click", function () {
-                    marker.remove();
 
-                })
+                    let lat = response.features[0].center[0];
+                    let lon = response.features[0].center[1];
 
+                        console.log(lat);
+                        console.log(lon);
+
+
+                        let marker2 = new mapboxgl.Marker().setLngLat([lat, lon]).addTo(map);
+
+                        // SETTING A POPUP
+                        let popup2 = new mapboxgl.Popup()
+                            // GIVING POPUP OBJECT A LOCATION
+                            .setLngLat([lat, lon])
+                            // GIVING THE POPUP A MESSAGE
+                            .setHTML("<h1>" + name + "</h1>" +
+                                "<h3>" + address + "</h3>" +
+                                " <img src='" + photo + "' alt='rest image' style='width: 200px; height: 150px'/>")
+                        // HIDES THE POPUP WHEN CLICK OUTSIDE OF IT. (***HAS TO BE PLACED ABOVE setPopup()***)
+                        marker2.togglePopup(popup2);
+                        // SETS POPUP WHEN MARKER IS CLICKED ON
+                        // CHAINING setPopup() TO "marker" VARIABLE ON LINE 92 MAKES THE "POPUP" POPUP WHEN THE MARKER IS CLICKED.
+                        marker2.setPopup(popup2);
+
+                    })
+
+
+
+
+                // let marker = new mapboxgl.Marker()
+                //     .setLngLat([dataItem.coordinates[0], dataItem.coordinates[1]])
+                //     .addTo(map);
+                //
+                //   // SETTING A POPUP
+                // let popup = new mapboxgl.Popup()
+                //     // GIVING POPUP OBJECT A LOCATION
+                //     .setLngLat([dataItem.coordinates[0], dataItem.coordinates[1]])
+                //     // GIVING THE POPUP A MESSAGE
+                //     .setHTML("<h1>" + name + "</h1>" +
+                //             "<h3>" + address + "</h3>" +
+                //        " <img src='" + photo + "' alt='rest image' style='width: 200px; height: 150px'/>")
+                // // HIDES THE POPUP WHEN CLICK OUTSIDE OF IT. (***HAS TO BE PLACED ABOVE setPopup()***)
+                // marker.togglePopup(popup);
+                // // SETS POPUP WHEN MARKER IS CLICKED ON
+                // // CHAINING setPopup() TO "marker" VARIABLE ON LINE 92 MAKES THE "POPUP" POPUP WHEN THE MARKER IS CLICKED.
+                // marker.setPopup(popup);
+                // // HIDES THE MARKERS WHEN "HIDE MARKERS" BUTTON IS CLICKED
+                // document.getElementById('hide-marker').addEventListener("click", function () {
+                //     marker.remove();
+                //
+                // })
             })
+
+
 
             //     USER DEFINED SEARCH
 
