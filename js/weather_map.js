@@ -28,7 +28,7 @@ function weatherCardData(lng, lat) {
             html += "<div class='card border-5 px-0'>"
             html += "<div class='card-body mx-auto'>"
             html += "<h5 class='card-title'>" + "<b style='color: #0fb784'>" + date + "</b>" + "</h5>"
-            html += "<p class='card-text'>" + "High: " + "<b style='color: #0fb784'>" + weatherData.list[i].main.temp_max + "<br>" + "Low: " + weatherData.list[i].main.temp_min + "</b>" + "</p>"
+            html += "<p class='card-text'>" + "High: " + "<b style='color: #0fb784'>" + weatherData.list[i].main.temp_max + " F" +"<br>" + "Low: " + weatherData.list[i].main.temp_min + " F" + "</b>" + "</p>"
             html += "<img className='card-img-top' style='width 100% height: auto' src='http://openweathermap.org/img/wn/" + weatherData.list[i].weather[0].icon + "@2x.png' alt='Card image cap'>"
             html += "<p class='card-text'>" + "Description: " + "<b style='color: #0fb784'>" + weatherData.list[i].weather[0].description + "</b>" + "</p>"
             html += "<div class='hidden-info'>"
